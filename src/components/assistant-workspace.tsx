@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 
 const prompts = ['Improve my CV summary', 'Find my best-fit roles', 'Plan my next application'];
 
@@ -38,6 +39,6 @@ export function AssistantWorkspace() {
       {error ? <p className="mt-4 rounded-xl bg-red-50 px-4 py-3 text-sm text-red-700">{error}</p> : null}
       {answer ? <div className="mt-6 rounded-[1.25rem] border border-emerald-100 bg-emerald-50 p-5"><p className="text-xs font-semibold uppercase tracking-[0.18em] text-emerald-700">Career Scout response</p><p className="mt-3 text-sm leading-7 text-slate-700">{answer}</p></div> : null}
     </section>
-    <aside className="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-[0_8px_20px_rgba(15,23,20,0.04)]"><h2 className="text-lg font-semibold text-slate-950">Your coaching context</h2><p className="mt-3 text-sm leading-7 text-slate-600">Responses use your signed-in profile and application records. Add more detail to your Career Passport for more relevant guidance.</p><a href="/career-passport" className="mt-6 inline-flex text-sm font-semibold text-emerald-600">Complete your context →</a></aside>
+    <aside className="rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-[0_8px_20px_rgba(15,23,20,0.04)]"><h2 className="text-lg font-semibold text-slate-950">Your coaching context</h2><p className="mt-3 text-sm leading-7 text-slate-600">Responses use your signed-in profile and application records. Add more detail to your Career Passport for more relevant guidance.</p><Link href="/career-passport" prefetch className="mt-6 inline-flex text-sm font-semibold text-emerald-600">Complete your context →</Link></aside>
   </div>;
 }

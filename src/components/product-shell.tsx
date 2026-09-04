@@ -58,10 +58,10 @@ export async function ProductShell({
     <main className="min-h-screen bg-[#f8fbf8] text-ink">
       <header className="sticky top-0 z-20 border-b border-emerald-950/8 bg-white/88 backdrop-blur-xl">
         <div className="mx-auto flex w-full max-w-[1600px] flex-wrap items-center gap-3 px-4 py-3 sm:px-6 lg:flex-nowrap lg:px-8">
-          <a href="/" className="flex items-center gap-3 text-slate-950">
+          <Link href="/" className="flex items-center gap-3 text-slate-950" prefetch>
             <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-500 text-sm font-bold text-white shadow-[0_10px_24px_rgba(16,185,129,0.25)]">S</span>
             <span className="text-lg font-semibold tracking-tight">Career Scout</span>
-          </a>
+          </Link>
 
           <ProductNav items={navItems} />
 

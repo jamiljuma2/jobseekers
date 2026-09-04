@@ -8,7 +8,7 @@ type AuthShellProps = {
   footerText: string;
   footerHref: string;
   footerLabel: string;
-  children: ReactNode;
+  children?: ReactNode;
 };
 
 export function AuthShell({

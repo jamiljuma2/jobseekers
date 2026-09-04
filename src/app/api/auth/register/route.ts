@@ -8,7 +8,6 @@ function safeNextPath(value: string | null) {
 export async function POST(request: Request) {
   const requestUrl = new URL(request.url);
   const formData = await request.formData();
-  const supabase = createSupabaseServerClient();
   const nextPath = safeNextPath(String(formData.get('next') ?? null));
   const email = String(formData.get('email') ?? '').trim();
   const password = String(formData.get('password') ?? '');
@@ -22,18 +21,28 @@ export async function POST(request: Request) {
     return NextResponse.redirect(loginUrl);
   }
 
-  const { data, error } = await supabase.auth.signUp({
-    email,
-    password,
-    options: {
-      data: {
-        full_name: fullName,
-        country,
-        role
-      },
-      emailRedirectTo: new URL(`/auth/callback?next=${encodeURIComponent(nextPath)}`, requestUrl.origin).toString()
-    }
-  });
+  let data;
+  let error;
+
+  try {
+    const supabase = createSupabaseServerClient();
+    ({ data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          full_name: fullName,
+          country,
+          role
+        },
+        emailRedirectTo: new URL(`/auth/callback?next=${encodeURIComponent(nextPath)}`, requestUrl.origin).toString()
+      }
+    }));
+  } catch (registrationError) {
+    const errorUrl = new URL('/auth/register', requestUrl.origin);
+    errorUrl.searchParams.set('error', registrationError instanceof Error ? registrationError.message : 'Authentication service is unavailable.');
+    return NextResponse.redirect(errorUrl);
+  }
 
   if (error) {
     const loginUrl = new URL('/auth/register', requestUrl.origin);

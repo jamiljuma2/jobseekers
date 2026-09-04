@@ -48,13 +48,13 @@ export async function signInWithGoogle() {
 
   if (error || !oauthUrl) {
     redirectWithQuery('/auth/login', 'error', error?.message ?? 'Unable to start Google sign-in.');
+    return;
   }
 
   redirect(oauthUrl);
 }
 
 export async function signUpWithPassword(formData: FormData) {
-  const supabase = createSupabaseServerClient();
   const siteUrl = getSiteUrl();
   const fullName = String(formData.get('name') ?? '').trim();
   const email = String(formData.get('email') ?? '').trim();
@@ -63,24 +63,32 @@ export async function signUpWithPassword(formData: FormData) {
   const role = String(formData.get('role') ?? '').trim();
   const nextPath = safeNextPath(formData.get('next'), '/dashboard');
 
-  const { error, data } = await supabase.auth.signUp({
-    email,
-    password,
-    options: {
-      data: {
-        full_name: fullName,
-        country,
-        role
-      },
-      emailRedirectTo: `${siteUrl}/auth/callback?next=${encodeURIComponent(nextPath)}`
-    }
-  });
+  let data;
+  let error;
+
+  try {
+    const supabase = createSupabaseServerClient();
+    ({ error, data } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        data: {
+          full_name: fullName,
+          country,
+          role
+        },
+        emailRedirectTo: `${siteUrl}/auth/callback?next=${encodeURIComponent(nextPath)}`
+      }
+    }));
+  } catch (registrationError) {
+    redirectWithQuery('/auth/register', 'error', registrationError instanceof Error ? registrationError.message : 'Authentication service is unavailable.');
+  }
 
   if (error) {
     redirectWithQuery('/auth/register', 'error', error.message);
   }
 
-  if (data.session && data.user) {
+  if (data?.session && data.user) {
     redirect(nextPath === '/dashboard' ? dashboardPathForUser(data.user) : nextPath);
   }
 

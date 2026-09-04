@@ -44,18 +44,18 @@ export function ProductShell({
   return (
     <main className="min-h-screen bg-[#f8fbf8] text-ink">
       <header className="sticky top-0 z-20 border-b border-emerald-950/8 bg-white/88 backdrop-blur-xl">
-        <div className="mx-auto flex w-full max-w-[1600px] items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
+        <div className="mx-auto flex w-full max-w-[1600px] flex-wrap items-center gap-3 px-4 py-3 sm:px-6 lg:flex-nowrap lg:px-8">
           <a href="/" className="flex items-center gap-3 text-slate-950">
             <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-emerald-500 text-sm font-bold text-white shadow-[0_10px_24px_rgba(16,185,129,0.25)]">S</span>
             <span className="text-lg font-semibold tracking-tight">Career Scout</span>
           </a>
 
-          <nav className="hidden items-center gap-1 lg:flex">
+          <nav className="order-3 flex basis-full items-center gap-1 overflow-x-auto pb-1 lg:order-none lg:basis-auto lg:overflow-visible lg:pb-0">
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition ${
+                className={`inline-flex shrink-0 items-center gap-2 rounded-full px-3 py-2 text-sm font-medium transition sm:px-4 ${
                   item.active
                     ? 'bg-emerald-50 text-emerald-700 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)]'
                     : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'
@@ -66,8 +66,8 @@ export function ProductShell({
             ))}
           </nav>
 
-          <div className="flex items-center gap-2">
-            <Link href="/auth/login" className="hidden rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:border-emerald-200 hover:text-emerald-700 sm:inline-flex">
+          <div className="ml-auto flex items-center gap-2">
+            <Link href="/auth/login" className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:border-emerald-200 hover:text-emerald-700 sm:px-4">
               Sign in
             </Link>
           </div>

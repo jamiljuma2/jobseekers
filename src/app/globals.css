@@ -33,6 +33,21 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+button,
+a,
+input,
+textarea,
+select {
+  max-width: 100%;
+}
+
+img,
+video,
+svg,
+canvas {
+  max-width: 100%;
+}
+
 ::selection {
   background: rgba(77, 180, 130, 0.2);
 }

@@ -72,7 +72,7 @@ export function CareerPassportWorkspace({
 
   return (
     <>
-      <section className="rounded-[1.75rem] border border-emerald-200 bg-emerald-50/60 p-5 sm:p-6">
+      <section id="improve-match" className="scroll-mt-24 rounded-[1.75rem] border border-emerald-200 bg-emerald-50/60 p-5 sm:p-6">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.18em] text-emerald-700">Improve your match</p>

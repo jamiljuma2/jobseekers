@@ -8,7 +8,14 @@ export function RouteScrollManager() {
 
   useEffect(() => {
     window.history.scrollRestoration = 'manual';
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    const hash = window.location.hash.slice(1);
+    const target = hash ? document.getElementById(hash) : null;
+
+    if (target) {
+      requestAnimationFrame(() => target.scrollIntoView({ block: 'start', behavior: 'auto' }));
+    } else {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    }
   }, [pathname]);
 
   return null;

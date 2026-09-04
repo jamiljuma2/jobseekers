@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 
 type NavItem = {
@@ -15,10 +14,6 @@ type ProductNavProps = {
 
 export function ProductNav({ items }: ProductNavProps) {
   const pathname = usePathname();
-
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: 'instant' as ScrollBehavior });
-  }, [pathname]);
 
   return (
     <nav aria-label="Primary navigation" className="order-3 flex basis-full items-center gap-1 overflow-x-auto pb-1 lg:order-none lg:basis-auto lg:overflow-visible lg:pb-0">

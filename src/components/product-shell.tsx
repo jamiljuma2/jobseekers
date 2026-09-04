@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
 import Link from 'next/link';
+import { createSupabaseServerClient } from '@/lib/supabase/server';
 
 type ShellStat = {
   label: string;
@@ -32,7 +33,7 @@ const defaultNavItems: NavItem[] = [
   { label: 'Interview Prep', href: '/interview-prep' }
 ];
 
-export function ProductShell({
+export async function ProductShell({
   title,
   subtitle,
   sectionLabel = 'AI Career Scout',
@@ -41,6 +42,16 @@ export function ProductShell({
   navItems = defaultNavItems,
   children
 }: ProductShellProps) {
+  let isAuthenticated = false;
+
+  try {
+    const supabase = createSupabaseServerClient();
+    const { data } = await supabase.auth.getUser();
+    isAuthenticated = Boolean(data.user);
+  } catch {
+    isAuthenticated = false;
+  }
+
   return (
     <main className="min-h-screen bg-[#f8fbf8] text-ink">
       <header className="sticky top-0 z-20 border-b border-emerald-950/8 bg-white/88 backdrop-blur-xl">
@@ -67,9 +78,15 @@ export function ProductShell({
           </nav>
 
           <div className="ml-auto flex items-center gap-2">
-            <Link href="/auth/login" className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:border-emerald-200 hover:text-emerald-700 sm:px-4">
-              Sign in
-            </Link>
+            {isAuthenticated ? (
+              <Link href="/dashboard" className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:border-emerald-200 hover:text-emerald-700 sm:px-4">
+                Dashboard
+              </Link>
+            ) : (
+              <Link href="/auth/login" className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:border-emerald-200 hover:text-emerald-700 sm:px-4">
+                Sign in
+              </Link>
+            )}
           </div>
         </div>
       </header>

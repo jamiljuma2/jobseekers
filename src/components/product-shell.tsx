@@ -25,6 +25,7 @@ type ProductShellProps = {
 };
 
 const defaultNavItems: NavItem[] = [
+  { label: 'Home', href: '/' },
   { label: 'Dashboard', href: '/dashboard' },
   { label: 'Jobs', href: '/jobs' },
   { label: 'Career Passport', href: '/career-passport' },

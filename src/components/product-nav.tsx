@@ -18,8 +18,8 @@ export function ProductNav({ items }: ProductNavProps) {
   return (
     <nav aria-label="Primary navigation" className="order-3 flex basis-full items-center gap-1 overflow-x-auto pb-1 lg:order-none lg:basis-auto lg:overflow-visible lg:pb-0">
       {items.map((item) => {
-        const isActive = item.href === '/dashboard'
-          ? pathname === item.href
+        const isActive = item.href === '/'
+          ? pathname === '/'
           : pathname === item.href || pathname.startsWith(`${item.href}/`);
 
         return (

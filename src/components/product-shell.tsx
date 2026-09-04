@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import Link from 'next/link';
 import { createSupabaseServerClient } from '@/lib/supabase/server';
+import { ProductNav } from '@/components/product-nav';
 
 type ShellStat = {
   label: string;
@@ -11,7 +12,6 @@ type ShellStat = {
 type NavItem = {
   label: string;
   href: string;
-  active?: boolean;
 };
 
 type ProductShellProps = {
@@ -25,7 +25,7 @@ type ProductShellProps = {
 };
 
 const defaultNavItems: NavItem[] = [
-  { label: 'Dashboard', href: '/dashboard', active: true },
+  { label: 'Dashboard', href: '/dashboard' },
   { label: 'Jobs', href: '/jobs' },
   { label: 'Career Passport', href: '/career-passport' },
   { label: 'Applications', href: '/applications' },
@@ -61,21 +61,7 @@ export async function ProductShell({
             <span className="text-lg font-semibold tracking-tight">Career Scout</span>
           </a>
 
-          <nav className="order-3 flex basis-full items-center gap-1 overflow-x-auto pb-1 lg:order-none lg:basis-auto lg:overflow-visible lg:pb-0">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className={`inline-flex shrink-0 items-center gap-2 rounded-full px-3 py-2 text-sm font-medium transition sm:px-4 ${
-                  item.active
-                    ? 'bg-emerald-50 text-emerald-700 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)]'
-                    : 'text-slate-500 hover:bg-slate-50 hover:text-slate-900'
-                }`}
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
+          <ProductNav items={navItems} />
 
           <div className="ml-auto flex items-center gap-2">
             {isAuthenticated ? (

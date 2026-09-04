@@ -28,6 +28,7 @@ const defaultNavItems: NavItem[] = [
   { label: 'Dashboard', href: '/dashboard' },
   { label: 'Jobs', href: '/jobs' },
   { label: 'Career Passport', href: '/career-passport' },
+  { label: 'CV Builder', href: '/cv-builder' },
   { label: 'Applications', href: '/applications' },
   { label: 'AI Assistant', href: '/assistant' },
   { label: 'Interview Prep', href: '/interview-prep' }

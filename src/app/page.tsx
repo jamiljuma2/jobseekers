@@ -27,6 +27,8 @@ const phaseCards = [
 ];
 
 export default function HomePage() {
+  const currentYear = new Date().getFullYear();
+
   return (
     <ProductShell
       sectionLabel="AI-powered career growth"
@@ -131,19 +133,22 @@ export default function HomePage() {
           </div>
 
           {[
-            ['Product', ['Find Jobs', 'Career Passport', 'CV Builder', 'Interview Prep']],
-            ['Company', ['About Us', 'Careers', 'Privacy Policy', 'Terms of Service']],
-            ['Support', ['Help Center', 'Contact Us', 'Anti-Scam Guide']]
+            ['Product', [['Find Jobs', '/jobs'], ['Career Passport', '/career-passport'], ['CV Builder', '/cv-builder'], ['Interview Prep', '/interview-prep']]],
+            ['Company', [['About Us', '/info/about'], ['Careers', '/info/careers'], ['Privacy Policy', '/info/privacy'], ['Terms of Service', '/info/terms']]],
+            ['Support', [['Help Center', '/info/help'], ['Contact Us', '/info/contact'], ['Anti-Scam Guide', '/info/anti-scam']]]
           ].map(([title, items]) => (
             <div key={String(title)}>
               <p className="text-lg font-semibold">{title}</p>
               <ul className="mt-4 space-y-3 text-sm text-white/70">
-                {(items as string[]).map((item) => (
-                  <li key={item}>{item}</li>
+                {(items as [string, string][]).map(([label, href]) => (
+                  <li key={href}><Link href={href} className="transition hover:text-emerald-300 hover:underline hover:underline-offset-4">{label}</Link></li>
                 ))}
               </ul>
             </div>
           ))}
+        </div>
+        <div className="mt-10 border-t border-white/10 pt-5 text-sm text-white/55">
+          <p>© {currentYear} Career Scout. All rights reserved.</p>
         </div>
       </footer>
     </ProductShell>

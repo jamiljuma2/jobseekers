@@ -24,10 +24,9 @@ export function AuthShell({
     <main className="relative overflow-hidden">
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,_#eef4ef_0%,_#e5ede6_100%)]" />
       <section className="mx-auto grid min-h-screen w-full max-w-7xl gap-8 px-6 py-10 lg:grid-cols-[0.95fr_1.05fr] lg:px-10">
-        <div className="flex flex-col justify-between rounded-[2rem] bg-[#dfe8e1] p-8 text-slate-950 shadow-[10px_10px_24px_rgba(163,177,198,0.34),-10px_-10px_24px_rgba(255,255,255,0.86)]">
+        <div className="order-2 flex flex-col justify-between rounded-[2rem] bg-[#dfe8e1] p-8 text-slate-950 shadow-[10px_10px_24px_rgba(163,177,198,0.34),-10px_-10px_24px_rgba(255,255,255,0.86)] lg:order-1">
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-emerald-700/75">{eyebrow}</p>
-            <h1 className="mt-4 max-w-xl text-[2.6rem] font-semibold tracking-tight text-balance sm:text-[3.4rem]">
+            <h1 className="max-w-xl text-[2.6rem] font-semibold tracking-tight text-balance sm:text-[3.4rem]">
               AI Career Scout keeps your job search focused on quality.
             </h1>
             <p className="mt-4 max-w-lg text-base leading-8 text-slate-700">
@@ -51,10 +50,9 @@ export function AuthShell({
           </div>
         </div>
 
-        <div className="flex items-center justify-center">
+        <div className="order-1 flex items-start justify-center lg:order-2 lg:items-center">
           <div className="w-full max-w-xl rounded-[2rem] bg-[#e9f0eb] p-8 shadow-[10px_10px_24px_rgba(163,177,198,0.32),-10px_-10px_24px_rgba(255,255,255,0.82)]">
             <div className="space-y-3">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-emerald-700">{eyebrow}</p>
               <h2 className="text-[2rem] font-semibold tracking-tight text-ink sm:text-[2.5rem]">{title}</h2>
               <p className="max-w-lg text-base leading-8 text-slate-700">{subtitle}</p>
             </div>

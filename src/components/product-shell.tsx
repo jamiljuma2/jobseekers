@@ -67,16 +67,11 @@ export async function ProductShell({
 
           <div className="ml-auto flex items-center gap-2">
             {isAuthenticated ? (
-              <>
-                <Link href="/dashboard" className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:border-emerald-200 hover:text-emerald-700 sm:px-4">
-                  Dashboard
-                </Link>
-                <form action="/api/auth/logout" method="post">
-                  <button type="submit" className="inline-flex rounded-full bg-slate-950 px-3 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-slate-800 sm:px-4">
-                    Log out
-                  </button>
-                </form>
-              </>
+              <form action="/api/auth/logout" method="post">
+                <button type="submit" className="inline-flex rounded-full bg-slate-950 px-3 py-2 text-sm font-medium text-white shadow-sm transition hover:bg-slate-800 sm:px-4">
+                  Log out
+                </button>
+              </form>
             ) : (
               <Link href="/auth/login" className="inline-flex rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 shadow-sm transition hover:border-emerald-200 hover:text-emerald-700 sm:px-4">
                 Sign in
